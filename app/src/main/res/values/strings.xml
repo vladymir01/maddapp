@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MaddApp</string>
+
+    <string name="home_screen">Home</string>
+    <string name="course_screen">Courses</string>
+    <string name="grade_screen">Grade</string>
+    <string name="my_tech_screen">MyTech</string>
 </resources>
