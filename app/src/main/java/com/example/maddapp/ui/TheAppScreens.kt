@@ -3,7 +3,11 @@ package com.example.maddapp.ui
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -13,6 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -23,11 +29,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.maddapp.R
 
 
-sealed class Screen(val route:String, @StringRes val resourceId: Int){
-    object Home: Screen("Home", R.string.home_screen)
-    object Courses: Screen("Courses", R.string.course_screen)
-    object Grade: Screen("Grade", R.string.grade_screen)
-    object MyTech: Screen("MyTech", R.string.my_tech_screen)
+sealed class Screen(val route:String,val icon: Int, @StringRes val resourceId: Int){
+    object Home: Screen("Home", R.drawable.baseline_home_24, R.string.home_screen)
+    object Courses: Screen("Courses", R.drawable.baseline_class_24,R.string.course_screen)
+    object Grade: Screen("Grade", R.drawable.baseline_grade_24,R.string.grade_screen)
+    object MyTech: Screen("MyTech", R.drawable.baseline_code_24,R.string.my_tech_screen)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,7 +55,7 @@ fun MainApp(){
             NavigationBar{
                 screens.forEach{ screen ->
                     NavigationBarItem(
-                        icon = {Icon(Icons.Filled.Favorite, contentDescription = null)},
+                        icon = {Icon(painterResource(screen.icon), contentDescription = null)},
                         label = {Text(stringResource(screen.resourceId))},
                         selected = currentDestination?.hierarchy?.any{it.route == screen.route} == true,
                         onClick = {
