@@ -6,4 +6,10 @@
     <string name="grade_screen">Grade</string>
     <string name="my_tech_screen">MyTech</string>
 
+    <string name="grade_system">Grade System</string>
+    <string name="algonquin_logo">Algonquin Logo</string>
+    <string name="madd_logo">Madd Logo</string>
+    <string name="submit_btn">Submit</string>
+    <string name="grade_result">The final mark for %s is : %s</string>
+
 </resources>
