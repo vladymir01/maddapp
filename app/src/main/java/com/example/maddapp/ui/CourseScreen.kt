@@ -67,7 +67,11 @@ fun SimpleNavAppBar(
     navigateUp: ()->Unit
 ){
     TopAppBar(
-        title = { Text(currentScreen)},
+        title = {
+                    if(currentScreen == "CoursesHome"){
+                        Text("Courses")
+                    }else{Text("Course Detail")}
+                },
         modifier = modifier,
         navigationIcon = {
             if (canNavigateBack){
@@ -220,11 +224,10 @@ fun ExpandableLevel(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(padding)
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.clickable { expandedState = !expandedState }
+                modifier = Modifier.padding(padding).clickable { expandedState = !expandedState }
             ) {
                 Text(
                     modifier = Modifier
