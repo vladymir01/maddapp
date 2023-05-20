@@ -46,7 +46,7 @@ fun GradeScreen(maddViewModel: MaddViewModel = viewModel()){
         .padding(16.dp)
         .fillMaxSize()) {
         Surface(
-            color = MaterialTheme.colorScheme.primary,
+//            color = MaterialTheme.colorScheme.primary,
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(modifier = Modifier.padding(16.dp)) {
@@ -59,8 +59,6 @@ fun GradeScreen(maddViewModel: MaddViewModel = viewModel()){
                 Spacer(modifier = Modifier.width(32.dp))
                 Text(
                     stringResource(R.string.grade_system),
-                    color = Color.White,
-                    fontSize = 18.sp
                 )
             }
         }
@@ -86,7 +84,7 @@ fun GradeScreen(maddViewModel: MaddViewModel = viewModel()){
         mySubmitButton(onSubmitButton = { keyboard?.let { maddViewModel.calculateFinalGrade(it) } })
         Spacer(modifier = Modifier.height(40.dp))
         Surface(
-            color = MaterialTheme.colorScheme.secondary,
+//            color = MaterialTheme.colorScheme.secondary,
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
@@ -95,9 +93,8 @@ fun GradeScreen(maddViewModel: MaddViewModel = viewModel()){
                     maddUiState.currentGrade,
                     maddUiState.finalMark
                 ),
-                color = MaterialTheme.colorScheme.onSecondary,
+//                color = MaterialTheme.colorScheme.onSecondary,
                 modifier = Modifier.padding(16.dp),
-                fontSize = 18.sp
             )
         }
     }
@@ -137,7 +134,6 @@ fun mySubmitButton(onSubmitButton:()->Unit){
     ) {
         Text(
             stringResource(R.string.submit_btn),
-            fontSize = 18.sp
         )
     }
 }

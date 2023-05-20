@@ -81,7 +81,8 @@ fun MainApp(){
                 HomeScreen()
             }
             composable(route= Screen.Courses.route){
-                CourseScreen()
+//                CourseScreen()
+                NavCourses()
             }
             composable(route = Screen.MyTech.route){
                 MyTechScreen()
