@@ -48,6 +48,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -57,7 +58,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.maddapp.TAG
+import com.example.maddapp.model.CoursesRepository
+import java.util.concurrent.Flow
 
+//region App Bar
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SimpleNavAppBar(
@@ -83,6 +87,7 @@ fun SimpleNavAppBar(
         }
     )
 }
+//endregion
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -143,8 +148,18 @@ fun CourseListScreen(navController: NavController,modifier: Modifier = Modifier)
 }
 
 @Composable
-fun CourseDetailScreen (item:String ){
-   Text(text = item)
+fun CourseDetailScreen (item:String){
+    val coursesRepository = CoursesRepository()
+    val courseInfo:Course = coursesRepository.getCourseInfo(item)
+    Column {
+        Text(text = item)
+        Text(text = courseInfo.title)
+        Text(text = courseInfo.courseDescription)
+
+    }
+
+
+
 }
 
 //region levelAndCourses
@@ -227,7 +242,9 @@ fun ExpandableLevel(
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(padding).clickable { expandedState = !expandedState }
+                modifier = Modifier
+                    .padding(padding)
+                    .clickable { expandedState = !expandedState }
             ) {
                 Text(
                     modifier = Modifier
