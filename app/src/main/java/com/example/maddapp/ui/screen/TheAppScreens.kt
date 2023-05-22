@@ -1,4 +1,4 @@
-package com.example.maddapp.ui
+package com.example.maddapp.ui.screen
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
@@ -27,6 +27,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.maddapp.R
+import com.example.maddapp.ui.GradeScreen
+import com.example.maddapp.ui.HomeScreen
+import com.example.maddapp.ui.MyTechScreen
 
 
 sealed class Screen(val route:String,val icon: Int, @StringRes val resourceId: Int){

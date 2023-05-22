@@ -1,6 +1,7 @@
 package com.example.maddapp.model
 
-import com.example.maddapp.ui.Course
+import com.example.maddapp.ui.screen.Course
+
 
 class CoursesRepository(){
     private val courses:Map<String, Course> = mapOf(
