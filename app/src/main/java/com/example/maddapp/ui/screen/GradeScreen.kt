@@ -47,7 +47,7 @@ fun GradeScreen(maddViewModel: MaddViewModel = viewModel()){
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(modifier = Modifier.padding(16.dp)) {
-                Surface(color = Color.White) {
+                Surface() {
                     Image(
                         painterResource(R.drawable.ac_school_of_media_and_design_logo),
                         contentDescription = stringResource(R.string.algonquin_logo)
