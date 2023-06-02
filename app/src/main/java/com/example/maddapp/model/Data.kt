@@ -32,7 +32,9 @@ class CoursesRepository(){
 
 data class MyTech(
     val id:String,
-    val name:String
+    val name:String,
+    val company: String,
+    val yearOfCreation:String
 )
 
 

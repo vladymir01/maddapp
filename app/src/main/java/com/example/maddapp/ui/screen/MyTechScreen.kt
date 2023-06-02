@@ -1,5 +1,7 @@
 package com.example.maddapp.ui.screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +26,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,9 +48,11 @@ fun FloatingButton(scope: CoroutineScope, state: ModalBottomSheetState){
 }
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MyTechScreen(){
+    val myTechViewModel:MyTechViewModel = viewModel()
     val state = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,
         skipHalfExpanded = true
@@ -56,15 +62,16 @@ fun MyTechScreen(){
     ModalBottomSheetLayout(
         sheetState = state,
         sheetShape = RoundedCornerShape(topEnd = 40.dp, topStart = 40.dp),
-        sheetContent = { TheSheetContent() }
+        sheetContent = { TheSheetContent(myTechViewModel) }
     ) {
-        TheScreenContent(scope, state)
+        TheScreenContent(scope,state,myTechViewModel)
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TheSheetContent(){
+fun TheSheetContent(myTechViewModel: MyTechViewModel){
     Surface(
         modifier = Modifier.height(600.dp),
     ) {
@@ -75,13 +82,13 @@ fun TheSheetContent(){
         ) {
             Text("Add a new Technology")
             Spacer(modifier = Modifier.height(24.dp))
-            TextField(value = "Something",modifier=Modifier.fillMaxWidth(), onValueChange = {})
+            TextField(value = myTechViewModel.techName,modifier=Modifier.fillMaxWidth(), onValueChange = {myTechViewModel.getTechNameEntered(it)})
             Spacer(modifier = Modifier.height(24.dp))
-            TextField(value = "Something",modifier=Modifier.fillMaxWidth(), onValueChange = {})
+            TextField(value = myTechViewModel.companyName,modifier=Modifier.fillMaxWidth(), onValueChange = {myTechViewModel.getCompanyNameEntered(it)})
             Spacer(modifier = Modifier.height(24.dp))
-            TextField(value = "Something",modifier=Modifier.fillMaxWidth(), onValueChange = {})
+            TextField(value = myTechViewModel.yearCreated,modifier=Modifier.fillMaxWidth(), onValueChange = {myTechViewModel.getYearCreatedEntered(it)})
             Spacer(modifier = Modifier.height(24.dp))
-            Button( modifier = Modifier.fillMaxWidth(),onClick = { /*TODO*/ }) {
+            Button( modifier = Modifier.fillMaxWidth(),onClick = { myTechViewModel.doSubmit()}) {
                 Text("Submit")
             }
         }
@@ -90,8 +97,9 @@ fun TheSheetContent(){
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun TheScreenContent(scope: CoroutineScope, state: ModalBottomSheetState){
-    val myTechViewModel:MyTechViewModel = viewModel()
+fun TheScreenContent(scope: CoroutineScope, state: ModalBottomSheetState, myTechViewModel: MyTechViewModel){
+
+
     Scaffold(floatingActionButton = { FloatingButton(scope, state)})
     { innerPadding ->
         Column(
@@ -103,7 +111,10 @@ fun TheScreenContent(scope: CoroutineScope, state: ModalBottomSheetState){
             Column(Modifier.padding(innerPadding)) {
                 myTechViewModel.myTechList.forEach {
                     Row {
-                        Text(text = it)
+                        Text(text = it.id)
+                        Text(text = it.name)
+                        Text(text = it.company)
+                        Text(text = it.yearOfCreation)
                     }
                 }
 
