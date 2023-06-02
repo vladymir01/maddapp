@@ -1,6 +1,9 @@
 package com.example.maddapp.model
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.maddapp.ui.screen.Course
+import java.time.Instant
 
 
 class CoursesRepository(){
@@ -26,3 +29,13 @@ class CoursesRepository(){
        return courses[courseId]?:throw Exception("Course not found")
     }
 }
+
+data class MyTech(
+    val id:String,
+    val name:String
+)
+
+
+
+
+
