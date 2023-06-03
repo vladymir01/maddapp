@@ -1,4 +1,4 @@
-package com.example.maddapp.ui
+package com.example.maddapp.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -21,7 +21,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -47,7 +46,7 @@ fun GradeScreen(maddViewModel: MaddViewModel = viewModel()){
             modifier = Modifier.fillMaxWidth()
         ) {
             Row(modifier = Modifier.padding(16.dp)) {
-                Surface() {
+                Surface {
                     Image(
                         painterResource(R.drawable.ac_school_of_media_and_design_logo),
                         contentDescription = stringResource(R.string.algonquin_logo)
@@ -61,7 +60,7 @@ fun GradeScreen(maddViewModel: MaddViewModel = viewModel()){
         }
 
         Spacer(modifier = Modifier.height(40.dp))
-        Surface() {
+        Surface {
             Image(
                 painterResource(R.drawable.madlogo),
                 contentDescription = stringResource(R.string.madd_logo),
@@ -78,7 +77,7 @@ fun GradeScreen(maddViewModel: MaddViewModel = viewModel()){
             onKeyboardDone = { keyboard?.let { maddViewModel.calculateFinalGrade(it) } }
         )
         Spacer(modifier = Modifier.height(40.dp))
-        mySubmitButton(onSubmitButton = { keyboard?.let { maddViewModel.calculateFinalGrade(it) } })
+        MySubmitButton(onSubmitButton = { keyboard?.let { maddViewModel.calculateFinalGrade(it) } })
         Spacer(modifier = Modifier.height(40.dp))
         Surface(
 //            color = MaterialTheme.colorScheme.secondary,
@@ -123,7 +122,7 @@ fun MyTextField(
 }
 
 @Composable
-fun mySubmitButton(onSubmitButton:()->Unit){
+fun MySubmitButton(onSubmitButton:()->Unit){
     Button(
         onClick = onSubmitButton,
         Modifier.fillMaxWidth(),

@@ -25,8 +25,8 @@ class MaddViewModel:ViewModel() {
     @OptIn(ExperimentalComposeUiApi::class)
     fun calculateFinalGrade(keyboard: SoftwareKeyboardController){
 
-        var gradeINNumber = gradeEntered.toIntOrNull()?:0
-        var finalMark = when(gradeINNumber){
+        val gradeINNumber = gradeEntered.toIntOrNull()?:0
+        val finalMark = when(gradeINNumber){
             in 0..49 -> "F"
             in 50..52 -> "D-"
             in 53..56 -> "D"

@@ -1,12 +1,9 @@
 package com.example.maddapp.model
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.maddapp.ui.screen.Course
-import java.time.Instant
 
 
-class CoursesRepository(){
+class CoursesRepository {
     private val courses:Map<String, Course> = mapOf(
         "mad9013" to  Course("mad9013","Web Dev", "Technologies on the web evolve quickly. Every year brings new devices and with them new capabilities. These devices present many challenges and opportunities to web developers. Students review fundamentals of web development using hypertext markup language (HTML), and cascading style sheets (CSS), with a focus on developing responsive and mobile websites. Multiple IDEs are introduced and used to complete hands-on projects."),
         "mad9014" to Course("mad9014", "Javascript", "While developing native applications for mobile devices holds many advantages, not every application requires direct access to native capabilities and there are many ways web developers can build applications using the programming skills they already possess. Students use HTML, CSS and Javascript to build applications which can quickly be deployed to multiple mobile platforms, such as iPhone and Android. Designing to conserve battery life is introduced as a concept in this course. Using mobile marketplaces to publish and market applications is introduced."),

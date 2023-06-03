@@ -1,5 +1,7 @@
 package com.example.maddapp.ui.screen
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -20,7 +22,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.maddapp.R
-import com.example.maddapp.ui.GradeScreen
 
 
 sealed class Screen(val route:String,val icon: Int, @StringRes val resourceId: Int){
@@ -30,6 +31,7 @@ sealed class Screen(val route:String,val icon: Int, @StringRes val resourceId: I
     object MyTech: Screen("MyTech", R.drawable.baseline_code_24,R.string.my_tech_screen)
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainApp(){
